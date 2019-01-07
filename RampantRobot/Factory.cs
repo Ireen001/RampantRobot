@@ -10,9 +10,24 @@ namespace RampantRobot
     class Factory
     {
         public Mechanic mechanic { set; get; }
+        public string[,] VerwijderRobotVorigeTurn(int rowLength, int colLength, string[,] grid)
+        {
+            // Verwijder robots van vorige turn
+            for (int r = 0; r < rowLength; r++)
+            {
+                for (int c = 0; c < colLength; c++)
+                {
+                    if (grid[r, c] == "R")
+                    {
+                        grid[r, c] = ".";
+                    }
+                }
+            }
+            return grid;
+        }
         public void plotting(int rowLength, int colLength, int robots, int turns)
         {
-            Opnieuw0:
+        Opnieuw0:
             // Lege lijsten en lege matrix
             string[,] grid;
             grid = new string[rowLength, colLength];
@@ -33,18 +48,6 @@ namespace RampantRobot
             grid[0, 0] = "M";
             Robot robot = new Robot();
 
-            // Verwijder robots van vorige turn
-            for (int r = 0; r < rowLength; r++)
-            {
-                for (int c = 0; c < colLength; c++)
-                {
-                    if (grid[r, c] == "R")
-                    {
-                        grid[r, c] = ".";
-                    }
-                }
-            }
-
             // Startpositie Robot
             for (int j = 0; j < robots; j++)
             {
@@ -64,8 +67,8 @@ namespace RampantRobot
 
 
             // Check of robots op dezelfde plek gaan staan.
-            // Kijk hoeevel dezelfde waardes in de lijst staan. Zo weet je of robots
-            // op dezelfde plek staan
+            // Kijk hoeveel dezelfde waardes in de lijst staan. Zo weet je of robots
+            // op dezelfde plek staan 
             sumgrids.Clear();
             for (int j = 0; j < robots; j++)
             {
@@ -95,18 +98,9 @@ namespace RampantRobot
             int statement = 0;
             while (statement < turns)
             {
-
                 // Verwijder robots van vorige turn
-                for (int r = 0; r < rowLength; r++)
-                {
-                    for (int c = 0; c < colLength; c++)
-                    {
-                        if (grid[r, c] == "R")
-                        {
-                            grid[r, c] = ".";
-                        }
-                    }
-                }
+                VerwijderRobotVorigeTurn(rowLength, colLength, grid);
+
                 string directions;
                 directions = Console.ReadLine();
                 Mechanic mechanic = new Mechanic();
@@ -118,41 +112,32 @@ namespace RampantRobot
                     RowMechanic = Location1.r;
                     ColMechanic = Location1.c;
                     grid[RowMechanic, ColMechanic] = "M"; // Plaats mechanic
-                    for (int j = 0; j < robots; j++)
-                    {
-                        // Delete robot als mechanic robot tegenkomt
-                        if (listrobotrow[j] == RowMechanic && listrobotcol[j] == ColMechanic)
-                        {
-                            listrobotrow.RemoveAt(j);
-                            listrobotcol.RemoveAt(j);
-                            grid[RowMechanic, ColMechanic] = "M";
-                            robots--;
-                            if (robots <= 0)
-                            {
-                                Debug.WriteLine("Yes, alle robots zijn geraakt!", robots);
-                                statement = turns;
-                            }
-                            else
-                            {
-                                Debug.WriteLine("Yes, een robot geraakt! Nog {0} te gaan..", robots);
-                            }
-                        }
-                    }
-                }
 
-                Opnieuw1:
-                // Verwijder robots van vorige turn
-                for (int r = 0; r < rowLength; r++)
+                }
+                for (int j = 0; j < robots; j++)
                 {
-                    for (int c = 0; c < colLength; c++)
+                    // Delete robot als mechanic robot tegenkomt
+                    if (listrobotrow[j] == RowMechanic && listrobotcol[j] == ColMechanic)
                     {
-                        if (grid[r, c] == "R")
+                        listrobotrow.RemoveAt(j);
+                        listrobotcol.RemoveAt(j);
+                        grid[RowMechanic, ColMechanic] = "M";
+                        robots--;
+                        if (robots <= 0)
                         {
-                            grid[r, c] = ".";
+                            Debug.WriteLine("Yes, alle robots zijn geraakt!", robots);
+                            statement = turns;
+                        }
+                        else
+                        {
+                            Debug.WriteLine("Yes, een robot geraakt! Nog {0} te gaan..", robots);
                         }
                     }
                 }
 
+            Opnieuw1:
+                // Verwijder robots van vorige turn
+                VerwijderRobotVorigeTurn(rowLength, colLength, grid);
 
                 for (int j = 0; j < robots; j++)
                 {
@@ -171,7 +156,7 @@ namespace RampantRobot
                     grid[RobotRow, RobotCol] = "R";
 
 
-                    // Delete robot als mechanic robot tegenkomt als de mechanic geen stap uitvoert.
+                    // Delete robot als mechanic robot tegenkomt
                     if (RobotRow == RowMechanic && RobotCol == ColMechanic)
 
                     {
@@ -187,8 +172,6 @@ namespace RampantRobot
                             Debug.WriteLine("Yes, een robot geraakt! Nog {0} te gaan..", robots);
                         }
                     }
-                    listrobotrow[j] = RobotRow;
-                    listrobotcol[j] = RobotCol;
                 }
 
                 // Check of robots op dezelfde plek gaan staan.
@@ -205,6 +188,15 @@ namespace RampantRobot
                 {
                     goto Opnieuw1;
                 }
+                // Check of er toevallig nog een robot onder mechanic staat
+                for (int j = 0; j < robots; j++)
+                {
+                    if (listrobotrow[j] == RowMechanic && listrobotcol[j] == ColMechanic)
+                    {
+                        goto Opnieuw1;
+                    }
+                }
+
                 //listrobotrow.ForEach(Console.WriteLine);
                 //listrobotcol.ForEach(Console.WriteLine);
                 //Console.WriteLine("Mechanic");
