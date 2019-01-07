@@ -13,7 +13,6 @@ namespace RampantRobot
         public void plotting(int rowLength, int colLength, int robots, int turns)
         {
             Opnieuw0:
-
             // Lege lijsten en lege matrix
             string[,] grid;
             grid = new string[rowLength, colLength];
@@ -174,9 +173,9 @@ namespace RampantRobot
 
                     // Delete robot als mechanic robot tegenkomt als de mechanic geen stap uitvoert.
                     if (RobotRow == RowMechanic && RobotCol == ColMechanic)
+
                     {
                         grid[RowMechanic, ColMechanic] = "M";
-                        //Debug.WriteLine("Yes, een robot geraakt! Nog {0} te gaan..", robots-1);
                         robots--;
                         if (robots <= 0)
                         {

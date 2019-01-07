@@ -10,7 +10,6 @@ namespace RampantRobot
     {
         public int r { get; set; }
         public int c { get; set; }
-        public int[,] Rmatrix { get; set; }
 
         public Location_Of_Robot(int r, int c)
         {

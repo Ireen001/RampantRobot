@@ -12,7 +12,7 @@ namespace RampantRobot
         public Location_Of_Robot Move(char directions, int RowMechanic, int ColMechanic, int rowLength, int colLength)
         {
 
-            //Locatie
+            //Locatie van Mechanic
             Location_Of_Robot locatie1 = new Location_Of_Robot(RowMechanic, ColMechanic);
 
             if (directions == 'a')
