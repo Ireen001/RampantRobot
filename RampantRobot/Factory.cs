@@ -25,6 +25,7 @@ namespace RampantRobot
             }
             return grid;
         }
+
         public void plotting(int rowLength, int colLength, int robots, int turns)
         {
         Opnieuw0:
@@ -89,6 +90,9 @@ namespace RampantRobot
                 }
                 Console.Write(Environment.NewLine + Environment.NewLine);
             }
+
+
+
             Console.WriteLine("Hartelijk welkom bij het spel Rampant Robots");
             Console.WriteLine("Gebruik de toetsen 'asdw' om een beweging te maken:");
 
@@ -160,8 +164,11 @@ namespace RampantRobot
                     if (RobotRow == RowMechanic && RobotCol == ColMechanic)
 
                     {
+
                         grid[RowMechanic, ColMechanic] = "M";
                         robots--;
+
+
                         if (robots <= 0)
                         {
                             Debug.WriteLine("Yes, alle robots zijn geraakt!", robots);
@@ -180,6 +187,7 @@ namespace RampantRobot
                 sumgrids.Clear();
                 for (int j = 0; j < robots; j++)
                 {
+
                     sumgrids.Add(listrobotrow[j]*10 + listrobotcol[j]);
                 }
 
@@ -197,10 +205,24 @@ namespace RampantRobot
                     }
                 }
 
-                //listrobotrow.ForEach(Console.WriteLine);
-                //listrobotcol.ForEach(Console.WriteLine);
-                //Console.WriteLine("Mechanic");
-                //Console.WriteLine(RowMechanic);
+                // Zorg dat er niet 2 robots onder de Mechanic kunnen staan
+                //if (listrobotcol.Count > robots)
+                //{
+                //    robots = listrobotcol.Count;
+                //    goto Opnieuw1;
+                //}
+
+                Console.WriteLine("RobotRow");
+                listrobotrow.ForEach(Console.WriteLine);
+                Console.WriteLine("RobotCol");
+
+                listrobotcol.ForEach(Console.WriteLine);
+                Console.WriteLine("Mechanic");
+                Console.WriteLine(RowMechanic);
+                Console.WriteLine(ColMechanic);
+
+                Console.WriteLine(robots);
+
 
 
                 // Plot de matrix na het spelen van de ronde

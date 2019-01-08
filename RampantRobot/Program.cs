@@ -12,9 +12,9 @@ namespace RampantRobot
         static void Main(string[] args)
         {
 
-            const int rowLength = 7;
-            const int colLength = 14;
-            int robots = 4;
+            const int rowLength = 4;
+            const int colLength = 4;
+            int robots = 5;
             int turns = 50;
             Factory factory = new Factory();
             factory.plotting(rowLength, colLength, robots, turns);
