@@ -12,14 +12,15 @@ namespace RampantRobot
         static void Main(string[] args)
         {
 
-            const int rowLength = 4;
-            const int colLength = 4;
-            int robots = 5;
+            const int rowLength = 5;
+            const int colLength = 12;
+            int robots = 7;
             int turns = 50;
+            bool robotsMove = true;
             Factory factory = new Factory();
-            factory.plotting(rowLength, colLength, robots, turns);
+            factory.plotting(rowLength, colLength, robots, turns, robotsMove);
             Console.ReadLine();
-                              
+
         }
     }
 }

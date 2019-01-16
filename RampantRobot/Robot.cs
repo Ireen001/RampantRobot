@@ -9,7 +9,7 @@ namespace RampantRobot
     class Robot
     {
         public Random random_directions = new Random();
-        public Location_Of_Robot Move(int rowLength, int colLength, int robots, int RobotRow, int RobotCol)
+        public Location_Of_Robot Move(int rowLength, int colLength, int RobotRow, int RobotCol)
         {
             int directions;
             Location_Of_Robot Move = new Location_Of_Robot(RobotRow, RobotCol);
@@ -46,7 +46,7 @@ namespace RampantRobot
 
         public Location_Of_Robot Startpositie(int rowLength, int colLength)
         {
-            Location_Of_Robot Startpositie= new Location_Of_Robot(0, 0);
+            Location_Of_Robot Startpositie = new Location_Of_Robot(0, 0);
             Startpositie.r = random_directions.Next(0, rowLength);
             Startpositie.c = random_directions.Next(0, colLength);
             return Startpositie;
