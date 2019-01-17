@@ -13,37 +13,37 @@ namespace RampantRobot
         {
 
             //Locatie van Mechanic
-            Location_Of_Robot locatie1 = new Location_Of_Robot(RowMechanic, ColMechanic);
+            Location_Of_Robot location1 = new Location_Of_Robot(RowMechanic, ColMechanic);
 
             if (directions == 'a')
             {
-                locatie1.c--;
+                location1.c--;
                 // Randen
-                if (locatie1.c < 0)
-                    locatie1.c = 0;
+                if (location1.c < 0)
+                    location1.c = 0;
             }
             else if (directions == 'w')
             {
-                locatie1.r--;
+                location1.r--;
                 // Randen
-                if (locatie1.r < 0)
-                    locatie1.r = 0;
+                if (location1.r < 0)
+                    location1.r = 0;
             }
             else if (directions == 'd')
             {
-                locatie1.c++;
+                location1.c++;
                 // Randen
-                if (locatie1.c > colLength - 1)
-                    locatie1.c = colLength - 1;
+                if (location1.c > colLength - 1)
+                    location1.c = colLength - 1;
             }
             else if (directions == 's')
             {
-                locatie1.r++;
+                location1.r++;
                 // Randen
-                if (locatie1.r > rowLength - 1)
-                    locatie1.r = rowLength - 1;
+                if (location1.r > rowLength - 1)
+                    location1.r = rowLength - 1;
             }
-            return locatie1;
+            return location1;
         }
     }
 }

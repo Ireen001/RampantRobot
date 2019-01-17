@@ -12,7 +12,7 @@ namespace RampantRobot
         public Mechanic mechanic { set; get; }
         public void plotting(int rowLength, int colLength, int robots, int turns, bool robotsMove)
         {
-        Opnieuw0:
+        again:
             // Lege lijsten en lege matrix
             string[,] grid;
             grid = new string[rowLength, colLength];
@@ -36,7 +36,7 @@ namespace RampantRobot
             // Startpositie Robot
             for (int j = 0; j < robots; j++)
             {
-                Location_Of_Robot Startpositie = robot.Startpositie(rowLength, colLength);
+                Location_Of_Robot Startpositie = robot.Startposition(rowLength, colLength);
                 int RobotRow = Startpositie.r;
                 int RobotCol = Startpositie.c;
 
@@ -46,10 +46,9 @@ namespace RampantRobot
                 // Zorg dat de robot niet linksboven wordt geplaatst.
                 if (RobotRow == 0 && RobotCol == 0)
                 {
-                    goto Opnieuw0;
+                    goto again;
                 }
             }
-
 
             // Check of robots op dezelfde plek gaan staan.
             // Kijk hoeveel dezelfde waardes in de lijst staan. Zo weet je of robots
@@ -62,7 +61,7 @@ namespace RampantRobot
             List<int> distinct = sumgrids.Distinct().ToList();
             if (distinct.Count < robots)
             {
-                goto Opnieuw0;
+                goto again;
             }
 
             // Plot de begin matrix
@@ -114,7 +113,6 @@ namespace RampantRobot
                             }
                         }
 
-
                         else // Robots blijven op dezelfde plek staan als de plek bezet is
                         {
                             grid[listrobotrow[j], listrobotcol[j]] = "R";
@@ -139,7 +137,6 @@ namespace RampantRobot
                         }
                         grid[RowMechanic, ColMechanic] = "M";
                     }
-
                 }
 
                 // Plot de matrix na het spelen van de ronde

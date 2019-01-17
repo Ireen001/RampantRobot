@@ -15,7 +15,6 @@ namespace RampantRobot
         {
             this.r = r;
             this.c = c;
-
         }
     }
 }

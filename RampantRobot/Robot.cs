@@ -14,42 +14,47 @@ namespace RampantRobot
             int directions;
             Location_Of_Robot Move = new Location_Of_Robot(RobotRow, RobotCol);
 
+            // Genereer random directions
             directions = random_directions.Next(0, 3);
-
 
             if (directions == 0)
             {
                 Move.c--;
+                // Randen
                 if (Move.c < 0)
                     Move.c = 0;
             }
             else if (directions == 1)
             {
                 Move.c++;
+                // Randen
                 if (Move.c > colLength - 1)
                     Move.c = colLength - 1;
             }
             else if (directions == 2)
             {
                 Move.r--;
+                // Randen
                 if (Move.r < 0)
                     Move.r = 0;
             }
             else if (directions == 3)
             {
                 Move.r++;
+                // Randen
                 if (Move.r > rowLength - 1)
                     Move.r = rowLength - 1;
             }
             return Move;
         }
 
-        public Location_Of_Robot Startpositie(int rowLength, int colLength)
+
+        public Location_Of_Robot Startposition(int rowLength, int colLength)
         {
-            Location_Of_Robot Startpositie = new Location_Of_Robot(0, 0);
-            Startpositie.r = random_directions.Next(0, rowLength);
-            Startpositie.c = random_directions.Next(0, colLength);
-            return Startpositie;
+            Location_Of_Robot Startposition = new Location_Of_Robot(0, 0);
+            Startposition.r = random_directions.Next(0, rowLength);
+            Startposition.c = random_directions.Next(0, colLength);
+            return Startposition;
         }
     }
 
