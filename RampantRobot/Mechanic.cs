@@ -9,11 +9,11 @@ namespace RampantRobot
     class Mechanic
     {
 
-        public Location_Of_Robot Move(char directions, int RowMechanic, int ColMechanic, int rowLength, int colLength)
+        public Locations Move(char directions, int RowMechanic, int ColMechanic, int rowLength, int colLength)
         {
 
             //Locatie van Mechanic
-            Location_Of_Robot location1 = new Location_Of_Robot(RowMechanic, ColMechanic);
+            Locations location1 = new Locations(RowMechanic, ColMechanic);
 
             if (directions == 'a')
             {

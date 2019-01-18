@@ -36,7 +36,7 @@ namespace RampantRobot
             // Startpositie Robot
             for (int j = 0; j < robots; j++)
             {
-                Location_Of_Robot Startpositie = robot.Startposition(rowLength, colLength);
+                Locations Startpositie = robot.Startposition(rowLength, colLength);
                 int RobotRow = Startpositie.r;
                 int RobotCol = Startpositie.c;
 
@@ -81,7 +81,7 @@ namespace RampantRobot
             int RowMechanic = 0;
             int ColMechanic = 0;
             int statement = 0;
-            while (statement < turns)
+            while (statement <= turns)
             {
                 string directions;
                 directions = Console.ReadLine();
@@ -89,7 +89,7 @@ namespace RampantRobot
                 for (int i = 0; i < directions.Length; i++)
                 {
                     grid[RowMechanic, ColMechanic] = "."; // Verwijder mechanic
-                    Location_Of_Robot Location1 = mechanic.Move(directions[i], RowMechanic, ColMechanic, rowLength, colLength);
+                    Locations Location1 = mechanic.Move(directions[i], RowMechanic, ColMechanic, rowLength, colLength);
                     RowMechanic = Location1.r;
                     ColMechanic = Location1.c;
                     grid[RowMechanic, ColMechanic] = "M"; // Plaats mechanic
@@ -99,7 +99,7 @@ namespace RampantRobot
                         int RobotRow = listrobotrow[j];
                         int RobotCol = listrobotcol[j];
 
-                        Location_Of_Robot Move = robot.Move(rowLength, colLength, RobotRow, RobotCol);
+                        Locations Move = robot.Move(rowLength, colLength, RobotRow, RobotCol);
                         if (grid[Move.r, Move.c] != "R")// Verplaats de robots als de plek vrij is
                         {
                             if (robotsMove == true) // zorg dat robots bewegen als robotsMove = true

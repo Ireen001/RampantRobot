@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factory.cs" />
-    <Compile Include="Location_Of_Robot.cs" />
+    <Compile Include="Locations.cs" />
     <Compile Include="Mechanic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
